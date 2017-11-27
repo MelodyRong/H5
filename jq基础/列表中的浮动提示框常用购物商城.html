@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ列表中的浮动提示框</title>
+		<style type="text/css">
+			body{
+				font-size:13px;
+			}                  
+			ul,li{
+				list-style-type:none;
+				padding:0px;
+				margin:0px;
+			} 
+			.menu{
+				width:190px;
+				border: solid 1px #e5d1a1;
+				background-color:#fffdd2;
+			}
+			.optn{
+				width:190px;
+				line-height: 28px;
+				border-top:dashed 1px #ccc;
+			}
+			.content{
+				padding-top:10px;
+				clear:left;
+			}
+			a{
+				text-decoration: none;
+				color:#666;
+				padding:10px;
+			}
+			.opthFocus{
+				background-color: :#fff;
+				font-weight: bold;			
+			}
+			div{
+				padding:10px;
+			}
+			div img{
+				float:left;
+				padding-right:6px;
+			}
+			span{
+				padding-top:3px;
+				font-size:14px;
+				font-weight: bold;
+				float: left;
+				
+			}
+			.tip{
+				width:190px;
+				border:solid 2px #ffa200;
+				position: absolute;
+				padding:10px;
+				background-color:#fff;
+				display: none;
+			}
+			.tip li {
+				line-height:23px;
+			}
+			#sort{
+				position: absolute;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="menu">
+				<div>
+					<img src="img/icon.gif " alt="" />
+					<span>电脑数码类产品</span>
+				</div>
+				<ul class="content">
+					<li class="optn"><a href="#">笔记本</a></li>
+					<ul class="tip">
+						<li><a href="#">笔记本1</a></li>
+						<li><a href="#">笔记本2</a></li>
+						<li><a href="#">笔记本3</a></li>
+						<li><a href="#">笔记本4</a></li>
+						<li><a href="#">笔记本5</a></li>
+					</ul>
+					<li class="optn"><a href="#">移动硬盘</a></li>
+					<ul class="tip">
+						<li><a href="#">移动硬盘1</a></li>
+						<li><a href="#">移动硬盘2</a></li>
+						<li><a href="#">移动硬盘3</a></li>
+						<li><a href="#">移动硬盘4</a></li>
+						<li><a href="#">移动硬盘5</a></li>
+					</ul>
+					<li class="optn"><a href="#">电脑软件</a></li>
+					<ul class="tip">
+						<li><a href="#">电脑软件1</a></li>
+						<li><a href="#">电脑软件2</a></li>
+						<li><a href="#">电脑软件3</a></li>
+						<li><a href="#">电脑软件4</a></li>
+						<li><a href="#">电脑软件5</a></li>
+					</ul>
+					<li class="optn"><a href="#">数码产品</a></li>
+					<ul class="tip">
+						<li><a href="#">数码产品1</a></li>
+						<li><a href="#">数码产品2</a></li>
+						<li><a href="#">数码产品3</a></li>
+						<li><a href="#">数码产品4</a></li>
+						<li><a href="#">数码产品5</a></li>
+					</ul>
+				</ul>
+				<span id="sort"> < </span>
+			</li>
+		</ul>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var curY;//获取所选项的Top值；
+			var curX;//获取所选项的Height值；
+			var curW;//获取所选项的Width值；
+			var srtY;//设置提示箭头的Top值；
+			var srtX;//设置提示箭头的Left值；
+			var objL;//获取当前对象；
+			/*设置当前位置数值
+			 参数obj为当前对象名称*/
+			function setInitValue(obj){
+				curY = obj.offset().top;
+				curH = obj.height();
+				curW = obj.width();
+				srtY = curY + (curH / 2) + "px";//设置提示箭头的top值
+				srtX = curW - 5 + "px";//设置提示箭头的left值
+			}
+			//设置当前所选项的鼠标滑过事件
+			$(".optn").mouseover(function(){
+				objL = $(this);//获取当前对象
+				setInitValue(objL);//设置当前位置
+				var allY = curY - curH + "px";//设置提示框的Top值
+				objL.addClass("opthFocus");//增加获取焦点时的样式
+				objL.next("ul").show().css({"top":allY,"left":curW});
+				$("#sort").show().css({"top":srtY,"left":srtX});
+			});
+			//设置当前所选项的鼠标移除事件
+			$(".optn").mouseout(function(){
+				$(this).removeClass("opthFocus");//删除获取焦点是的样式
+				$(this).next("ul").hide();//隐藏提示框
+				$("#sort").hide();//隐藏提示箭头
+			});
+			$(".tip").mousemove(function(){
+				$(this).show();//显示提示框
+				objL = $(this).prev("li");//获取当前的上级li对象
+				setInitValue(objL);//设置当前位置
+				objL.addClass("opthFocus");//增加上级li获取焦点时的样式
+				//显示并设置提示箭头的坐标
+				$("#sort").show().css({"top":srtY,"left":srtX});
+			});
+			$(".tip").mouseout(function(){
+				$(this).hide();//隐藏提示框
+				$(this).prev("li").removeClass("opthFocus");//删除获取焦点时的样式
+				$("#sort").hide();//隐藏提示箭头
+			});
+		})
+	</script>
+</html>

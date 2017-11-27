@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文本框应用，常用于提示输入的内容是否正确</title>
+		<style type="text/css">
+			body{
+				font-size:13px;
+			}
+			/*元素初始状态样式*/
+			.divInit{
+				width:390px;
+				height:55px;
+				line-height:55px;
+				padding-left: 20px;
+			}
+			.textInit{
+				border:#666 1px solid;
+				padding:3px;
+				/*background-image: url();*/				
+			}
+			.spamInit{
+				width:179px;
+				height:40px;
+				line-height:40px;
+				float: right;
+				margin-top: 8px;
+				padding-left:10px;
+				background-repeat: no-repeat;
+			}
+			/*元素丢失焦点样式*/
+			.divBlur{
+				background-color:#feeec2;
+			}				
+			.txtBlur{
+				border:#666 1px solid;
+				padding:3px;
+				/*background-image: ;*/
+			}
+			.spanBlur{
+				background-image:url(img/clos.jpg);
+			}
+			.divFocu{
+				/*div获取焦点时的样式*/
+				background-color:#edffd5;     
+			}
+			.spanSucc{
+				background-image:url(img/ok.jpg);
+				/*验证成功时span的演示*/
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="" id="form1">
+			<div id="email" class="divInit">邮箱：
+				<spam id="spamTip" class="spnInit"></spam>
+				<input type="text" id="textEmail" class="textInit" />
+			</div>
+		</form>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#textEmail").trigger("focus");//默认时文本框获取焦点
+			$("#textEmail").focus(function(){//文本框获取 焦点事件
+				$(this).removeClass("txtBlur").addClass("textInit");
+				$("#email").removeClass("divBlur").addClass("divFocu");
+				$("#spanTip").removeClass("spanBlur").removeClass("spanSucc").html("请输入您常用的邮箱地址");
+			})
+			$("#textEmail").blur(function(){//文本框失焦事件
+				var vtxt = $("#textEmail").val();
+				if(vtxt.length == 0){
+					$(this).removeClass("textInit").addClass("txtBlur");
+					$("#email").removeClass("divFocu").addClass("divBlur");
+					$("#spanTip").removeClass("spanBlur").html("邮箱地址不能为空");
+				}else {
+						if(!chkEmail(vtxt)){//检查邮箱格式是否正确
+							$(this).removeClass("textInit").addClass("txtBlur");
+							$("#spanTip").addClass("spanBlur").html("邮箱格式不正确");
+						}else{//如果正确
+							$(this).removeClass("txtBlur").addClass("textInit");
+							$("#email").removeClass("divFocu");
+							$("#spanTip").removeClass("spanBlur").addClass("spanSucc").html("√");
+						}
+				}
+			})
+			//验证邮箱格式是否正确
+			//参数strEmail，需要验证邮箱
+			function chkEmail(strEmail){
+				return true;
+//				return /^\w+([-+.$]\w+)*@\w + ([-.]\w+)*\.\w+([-.]\w+)*s/.test(strEmail);
+//				if(!){
+//					return false;
+//				}else{
+//					return true;
+//				}
+			}
+		})
+	</script>
+</html>

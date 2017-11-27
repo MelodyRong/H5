@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<User id="1">
+		<name>张岩茸</name>
+		<sex>女</sex>
+		<email>13522826326@163.com</email>
+	</User>
+	<User id="2">
+		<name>王帅帅</name>
+		<sex>男</sex>
+		<email>13522826326@163.com</email>
+	</User>
+</info>

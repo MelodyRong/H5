@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js HTML DOM</title>
+		<style type="text/css">
+			#myDIV {
+			    background-color: coral;
+			    border: 1px solid;
+			    padding: 50px;
+			    color: white;
+			}
+		</style>
+	</head>
+	<body onload="checkCookies()">
+		<img id="image" src="http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg">
+		<p id="p1">Hello World!</p>
+		<p id="p2">Hello World!</p>
+		<!--实例三：使用事件-->
+		<h1 id="id1">我的标题 1</h1>
+		<button type="button" onclick="document.getElementById('id1').style.color='red'">点我</button>
+		<h1 onclick="changetext(this)">点击文本!</h1>
+		<p>当你离开输入框后，函数将被触发，将小写字母转为大写字母。</p>
+		输入你的名字: <input type="text" id="fname" onchange="myFunction()">
+		<div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:#D94A38;width:120px;height:20px;padding:40px;">Mouse Over Me</div>
+		<p>该实例使用 addEventListener() 方法在按钮中添加点击事件。 </p>
+		<button id="myBtn">点我</button>
+		
+		<p id="demo"></p>
+		<p>实例在 window 对象中使用 addEventListener() 方法。</p>
+		<p>尝试重置浏览器的窗口触发 "resize" 事件句柄。</p>
+		<p id="demo1"></p>
+		
+		<p>点击按钮执行计算。</p>
+		<button id="myBtn1">点我</button>
+		<p id="demo2"></p>
+		
+		<div id="myDIV"> div 元素添加了 onmousemove 事件句柄，鼠标在桔红色的框内移动时会显示随机数。
+		  <p>点击按钮移除 DIV 的事件句柄。</p>
+		  <button onclick="removeHandler()" id="myBtn2">点我</button>
+		</div>
+		<p id="demo3"></p>
+		
+		<p> Internet Explorer 8 及更早IE版本不支持 addEventListener() 方法。</p>
+		<p>该实例演示了所有浏览器兼容的解决方法。</p>
+		<button id="myBtn3">点我</button>
+		<!--创建新的节点-->
+		<div id="div1">
+			<p id="p1">这是一个段落。</p>
+			<p id="p2">这是另一个段落。</p>
+		</div>
+		<!--删除节点-->
+		<div id="div2">
+			<p id="p3">这是一个段落。</p>
+			<p id="p4">这是另一个段落。</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*1.DOM简介：当页面被加载时，浏览器汇创建页面的文档对象模型(Document Object Model)
+		 通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。
+		JavaScript 能够改变页面中的所有 HTML 元素
+		JavaScript 能够改变页面中的所有 HTML 属性
+		JavaScript 能够改变页面中的所有 CSS 样式
+		JavaScript 能够对页面中的所有事件做出反应
+		查找 HTML 元素：
+		通过 id 找到 HTML 元素
+		通过标签名找到 HTML 元素
+		通过类名找到 HTML 元素
+		通过 id 查找 HTML 元素：在 DOM 中查找 HTML 元素的最简单的方法，是通过使用元素的 id，var x=document.getElementById("intro");
+		通过标签名查找 HTML 元素：var y=getElementsByTagName("p");
+		通过类名找到 HTML 元素：var x=document.getElementsByClassName("intro");*/
+		/*2.HTML DOM 改变HTML
+		 在 JavaScript 中，document.write() 可用于直接向 HTML 输出流写内容。
+		 document.write(Date());
+		 改变 HTML 内容：修改 HTML 内容的最简单的方法时使用 innerHTML 属性。
+		 改变 HTML 属性：实例一*/
+		//实例一:改变HTML的属性：
+		document.getElementById("image").src="http://img05.tooopen.com/images/20140326/sy_57640132134.jpg";
+		/*3.HTML DOM改变CSS：实例二：
+		 使用事件：HTML DOM 允许我们通过触发事件来执行代码。
+		比如以下事件：元素被点击。页面加载完成。输入框被修改等等；实例三。*/
+		//实例二:改变css
+		document.getElementById("p2").style.color="blue";
+		document.getElementById("p2").style.fontFamily="Arial";
+		document.getElementById("p2").style.fontSize="larger";
+		/*4.HTMLDOM事件：
+		 对事件做出反应，我们可以在事件发生时执行 JavaScript，比如当用户在 HTML 元素上点击时。，如需在用户点击某个元素时执行代码，请向一个 HTML 事件属性添加 JavaScript 代码：onclick=JavaScript
+		HTML 事件的例子：
+		当用户点击鼠标时
+		当网页已加载时
+		当图像已加载时
+		当鼠标移动到元素上时
+		当输入字段被改变时
+		当提交 HTML 表单时
+		当用户触发按键时
+		onload 和 onunload 事件：
+		onload 和 onunload 事件会在用户进入或离开页面时被触发。
+		onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。
+		onload 和 onunload 事件可用于处理 cookie。
+		onchange 事件：
+		onchange 事件常结合对输入字段的验证来使用。
+		下面是一个如何使用 onchange 的例子。当用户改变输入字段的内容时，会调用 upperCase() 函数。实例五。
+		onmouseover 和 onmouseout 事件：
+		onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。实例六。
+		onmousedown、onmouseup 以及 onclick 事件：
+		onmousedown, onmouseup 以及 onclick 构成了鼠标点击事件的所有部分。首先当点击鼠标按钮时，会触发 onmousedown 事件，当释放鼠标按钮时，会触发 onmouseup 事件，最后，当完成鼠标点击时，会触发 onclick 事件。
+		onload:当页面完成加载时，显示一个提示框。
+		onfocus:当输入字段获得焦点时，改变其背景色。
+		鼠标事件:当指针移动到元素上方时，改变其颜色；当指针移出文本后，会再次改变其颜色。*/
+		//实例四：点击事件调取一个文本
+		function changetext(id){
+			id.innerHTML="Ooops!";
+		}
+		function checkCookies(){
+			if (navigator.cookieEnabled==true){
+				alert("Cookies 可用")
+			}
+			else{
+				alert("Cookies 不可用")
+			}
+		}
+		//实例五：onchange事件：
+		function myFunction(){
+			var x=document.getElementById("fname");
+			x.value=x.value.toUpperCase();
+		}
+		//实例六：
+		function mOver(obj){
+			obj.innerHTML="Thank You"
+		}
+		function mOut(obj){
+			obj.innerHTML="Mouse Over Me"
+		}
+		/*5.js HTML DOM Evenlistener
+		 addEventListener()方法：在用户点击按钮时出发监听事件；
+		 addEventListener() 方法用于向指定元素添加事件句柄。
+		addEventListener() 方法添加的事件句柄不会覆盖已存在的事件句柄。
+		你可以向一个元素添加多个事件句柄。
+		你可以向同个元素添加多个同类型的事件句柄，如：两个 "click" 事件。
+		你可以向任何 DOM 对象添加事件监听，不仅仅是 HTML 元素。如： window 对象。
+		addEventListener() 方法可以更简单的控制事件（冒泡与捕获）。
+		当你使用 addEventListener() 方法时, JavaScript 从 HTML 标记中分离开来，可读性更强， 在没有控制HTML标记时也可以添加事件监听。
+		你可以使用 removeEventListener() 方法来移除事件的监听。
+		语法：element.addEventListener(event, function, useCapture);
+		第一个参数是事件的类型 (如 "click" 或 "mousedown").
+		第二个参数是事件触发后调用的函数。
+		第三个参数是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的。
+		注意:不要使用 "on" 前缀。 例如，使用 "click" ,而不是使用 "onclick"。
+		
+		* 事件传递的两种方法：事件冒泡或事件捕获：
+		* 在冒泡中，内部元素的事件会先被触发，然后再触发外部元素
+		* 在捕获中，外部元素的事件会先被触发，然后才会触发内部元素的事件。
+		* 
+		* removeEventListener()方法：移除addEventListener()方法添加的事件句柄
+		* 
+		* 跨浏览器支持：IE 8 及更早 IE 版本，Opera 7.0及其更早版本不支持 addEventListener() 和 removeEventListener() 方法。但是，对于这类浏览器版本可以使用 detachEvent() 方法来移除事件句柄；
+		* addEventListener()跨浏览器的兼容实例：实例十一；*/
+		//实例七：addEventlistener()监听点击事件；
+		document.getElementById("myBtn").addEventListener("click",displayDate);
+		document.getElementById("myBtn").addEventListener("click",diplayDate);
+		function displayDate() {
+		    document.getElementById("demo").innerHTML = Date();
+		}
+		function diplayDate(){
+			alert(1);
+		}
+		//实例八：
+		window.addEventListener("resize", function(){
+		    document.getElementById("demo1").innerHTML = Math.random();
+		});
+		//实例九：
+		var p1 = 5;
+		var p2 = 7;
+		document.getElementById("myBtn1").addEventListener("click", function() {
+		    myFunction1(p1, p2);
+		});
+		function myFunction1(a, b) {
+		    var result = a * b;
+		    document.getElementById("demo2").innerHTML = result;
+		}
+		//实例十：
+		document.getElementById("myDIV").addEventListener("mousemove", myFunction2);
+		function myFunction2() {
+		    document.getElementById("demo3").innerHTML = Math.random();
+		}
+		function removeHandler() {
+		    document.getElementById("myDIV").removeEventListener("mousemove", myFunction2);
+		}
+		//实例十一：addEventListener跨浏览器兼容的解决办法：
+		var x = document.getElementById("myBtn3");
+		if (x.addEventListener) {
+		    x.addEventListener("click", myFunction3);
+		} else if (x.attachEvent) {
+		    x.attachEvent("onclick", myFunction3);
+		}
+		function myFunction3() {
+		    alert("Hello World!");
+		}
+		/*6.HTML DOM元素(节点)：
+		 创建一个新的节点：如需想HTMLDOM添加元素，您必须首先创建该元素，然后向一个已经存在的元素追加该元素！实例十二！
+		 删除已有的元素：实例十三！
+		 * */
+		//实例十二：创建一个新的节点：
+//		var para = document.createElement("p");
+		var para=document.createElement("p");
+		var node = document.createTextNode("这是一个新的段落");//创建一个文本节点！
+//		var node=document.createTextNode("这是一个新段落。");
+//		para.appendChild(node);
+		para.appendChild(node);
+		var element=document.getElementById("div1");
+		element.appendChild(para);
+		//实例十三：删除已有的元素：
+		var parent=document.getElementById("div2");
+		var child=document.getElementById("p3");
+		parent.removeChild(child);
+	</script>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>切换动画方式浏览图片</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<!--<script type="text/javascript" src="js/jquery3.2.1.min.js"></script>-->
+		<style type="text/css">
+			/*图片外框样式*/
+			.p_Lst{
+				position: relative;
+				float: left;
+				width:90px;
+				height:98px;
+				padding:8px;
+				border:1px solid #666;
+				margin:10px 8px 20px 8px;
+			}
+			/*图片最近外框样式*/
+			.p_Img{
+				width:90px;
+				height:90px;
+				margin-bottom: 5px;
+				overflow: hidden;
+			}
+			/*图片信息样式*/
+			.p_Alt{
+				display: none;
+			}
+			/*缩略图片中点击放大连接样式*/
+			.p_Big{
+				display: block;
+				width:90px;
+				height:23px;
+				background-image:url(img/ok.jpg);
+				cursor: pointer;
+				background-repeat: no-repeat;
+			}
+			/*原始放大图片中关闭按钮样式*/
+			.p_Cls{
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				display: block;
+				width: 20px;
+				height:21px;
+				background-image: url(img/clos.jpg);
+				background-repeat: no-repeat;
+				text-indent: -9999px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="p_Lst">
+			<img src="img/guandimiao.jpg" alt="" style="width:90px;height:90px"/>
+			<div class="p_Alt">
+				<h3>风景一</h3>
+			</div>
+		</div>
+		<div class="p_Lst">
+			<img src="img/guandimiao1.jpg" alt="" style="width:90px;height:90px"/>
+			<div class="p_Alt">
+				<h3>风景二</h3>
+			</div>
+		</div>
+		<div class="p_Lst">
+			<img src="img/guangong.jpg" alt="" style="width:90px;height:90px"/>
+			<div class="p_Alt">
+				<h3>风景三</h3>
+			</div>
+		</div>
+		<div class="p_Lst">
+			<img src="img/guangong1.jpg" alt="" style="width:90px;height:90px"/>
+			<div class="p_Alt">
+				<h3>风景四</h3>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			var curindex= -1;//初始化当前打开图片值
+			var intImgL = "-120px";
+			var intImgT = "-120px";
+			//带参数index遍历图片外框div
+			$(".p_Lst").each(function(index){
+				var $this = $(this);//获取每个外框div
+				var $img = $this.find("img");//查找其中的图片元素
+				var $info = $this.find(".p_Alt");//查询其中的图片信息元素
+				var arrPic = {};//定义一个空数组来保存初始的长于宽
+				arrPic.imgw = $img.width();
+				arrPic.imgh = $img.height();
+				arrPic.orgw = $this.width();
+				arrPic.orgh = $this.height();
+				$img.css({//设 置初始时的图片外边距位置
+					marginLeft:intImgL,
+					marginTop:intImgT
+				});
+				//将图片，点击放大连接，关闭按钮放入外框div中
+				var $drag = $("<div class='p_Img'>").append($img).prependTo($this);
+				var $open = $("<a href='javascript:void(0)' class='p_Big' title='点击放大'></a>").appendTo($this);
+				var $clos = $("<a href='kavascript:void(0)' class='p_Cls' title='点击关闭'></a>").appendTo($info);
+				//保存放入元素后的外框div的长与宽
+				arrPic.dragw = $drag.width();
+				arrPic.dragh = $drag.height();
+				//放大按钮单击事件
+				$open.click(function(){
+					$this.animate({//外框动画
+						width:arrPic.imgw,
+						height:(arrPic.imgh + 85),//85是图片信息的高度
+						borderWidth:"5"
+					},3000);
+					$open.fadeOut();//点击放大连接淡出
+					$(".p_Alt",$this).fadeIn();//图片提示信息淡入
+					$drag.animate({//假如图片后的div框动画
+						width:arrPic.imgw,
+						width:arrPic.imgh
+					},3000);
+					$img.animate({//以动画的形式自动调整位置
+						marginTop:"0px",
+						marginLeft:"0px"
+					},3000);
+					//获取当前被放大成原始图的图片个组成部分
+					var $f_this = $(".p_Lst:eq(" + curindex + ")");
+					var $f_open = $(".p_Big:eq(" + curindex + ")");
+					var $f_drag = $(".p_Img:eq(" + curindex + ")");
+					var $f_larg = $(".p_Alt:eq(" + curindex + ")");
+					var $f_imgs = $("img:eq(" + curindex + ")");
+					if(curindex != -1){//如果当前有已放大图片
+						//自动以动画形式关闭该图片
+						cls_Click($f_this,$f_open,$f_drag,$f_imgs.$f_larg);
+					}
+					//重新获取当前放大图片的索引号
+					curindex = index;
+				});
+				//关闭按钮单击事件
+				$clos.click(function(){
+					//以动画形式缩小当前所点击的图片
+					cls_Click($this,$open,$drag,$img,1);
+					//初始化索引号
+					curindex = -1;
+				});
+				/*@param 参数pf表示图片最外层div
+				 * @param 参数po表示图片点击前的放大按钮
+				 * @param 参数pw表示紧邻图片层div
+				 * @param 参数pi表示进紧选中的图片元素
+				 * @param 参数blns表示图片中的说明内容
+				 */
+				function cls_Click(pF,pO,pW,pI,blnS){
+					var $strInit;
+					pF.animate({
+						width:arrPic.orgw,
+						height:arrPic.orgh
+					},3000);
+					pO.fadeIn();
+					if(blnS){
+						$strInit = $(".p_Alt",pF);
+					}else{
+						$strInit = blnS;
+					}
+					$strInit.fadeOut();
+					pW.animate({
+						width:arrPic.dragw,
+						height:arrPic.dragh
+					},3000);
+					pI.animate({
+						marginTop:intImgT,
+						marginLeft:intImgL
+					},3000);
+				}	
+			});
+		})
+	</script>
+</html>

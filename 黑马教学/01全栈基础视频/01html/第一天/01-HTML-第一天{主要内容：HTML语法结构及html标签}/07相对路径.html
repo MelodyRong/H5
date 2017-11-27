@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+        	body{
+        		font-size:13px;
+        	}
+        	.divFram{
+        		width:260px;
+        		border:solid 1px #666;       		
+        	}
+        	.divFrame .divTitle{
+        		padding:5px;
+        		background-color:#eee;
+        	}
+        	.divFrame .divContent{
+        		padding:8px;
+        	}
+        	.divFrame .divContent .clsShow{
+        		font-size:14px;
+        	}
+        	.btn{
+        		border:#666 1px solid;
+        		padding:2px;
+        		width:80px;
+        	}
+        </style>
+    </head>
+    <body>
+
+    	 <!--<img src="1.jpg">-->
+    	 <div class="divFrame">
+    	 	<div class="divTitle">
+    	 		姓名：<input type="text" name="" id="txtName" value="" />
+    	 		性别：<input type="text" id="selSex" />
+    	 		<input type="button" id="button1" class="btn" value="获取数据"/>
+    	 	</div>
+    	 	<div class="divContent">
+    	 		<div id="divTip"></div>
+    	 	</div>
+    	 </div>	
+    </body>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$("#button1").click(function(){
+    			//1.load获取异步数据
+//  			$("#divTip").load("01单标签.html");
+    			//2.全局函数getJSON()实现异步获取数据
+    			//打开文件并通过回调函数处理获取的数据
+//  			$.getJSON("getJSON.json",function(data){
+//  				$("#divTip").empty();//先清空标记中的内容
+//  				var strHTML = "";//初始化保存内容变量
+//  				//遍历获取的数据
+//  				$.each(data,function(InfoIndex,Info){
+//  					console.log(InfoIndex);
+//  					console.log(Info);
+//  					strHTML += "姓名：" + Info["name"] + "<br>";
+//  					strHTML += "性别：" + Info["sex"] + "<br>";
+//  					strHTML += "邮箱：" + Info["email"] + "<hr>";
+//  				})
+//  				$("#divTip").html(strHTML);
+//  			})
+				//3.全局函数getScript()实现异步获取数据
+//				$.getScript("getScript.js");//打开以获取返回数据的文件
+				//4.异步加载XML文档：使用全局函数get实现一步获取xml文档数据
+				//打开文件并通过回调函数处理获取的数据
+//				$.get("get.xml",function(data){
+//					$("#divTip").empty();
+//					var strHTML = "";
+//					find("User")遍历搜索get.xml文件中的User元素
+//					$(data).find("User").each(function(){//遍历获取的数据
+//						var $User = $(this);
+//						strHTML += "姓名：" + $User.find("name").text() + "<br>";
+//						strHTML += "性别：" + $User.find("sex").text() + "<br>";
+//						strHTML += "邮箱：" + $User.find("email").text() + "<hr>";
+//					})
+//					$("#divTip").html(strHTML);
+//				})
+
+
+				//请求服务器数据
+				//1.全局函数 get请求服务器数据：(有问题)
+				//打开文件，并通过回调函数返回服务器响应后的数据
+//				$.get("getasyn.aspx",{name:encodeURI($("#txtName").val())},function(data){
+//					console.log(data);
+//					$("#divTip").empty().html(data);
+//				})
+				$.get("getJSON.json",function(data){
+					$("#divTip").empty();//先清空标记中的内容
+    				var strHTML = "";//初始化保存内容变量
+//  				//遍历获取的数据
+    				$.each(data,function(InfoIndex,Info){
+    					console.log(InfoIndex);
+    					console.log(Info);
+    					strHTML += "姓名：" + Info["name"] + "<br>";
+    					strHTML += "性别：" + Info["sex"] + "<br>";
+    					strHTML += "邮箱：" + Info["email"] + "<hr>";
+    				})
+    				$("#divTip").html(strHTML);
+				})
+				
+//				2.全局函数post请求服务器数据(有问题)
+//				$.post("getasyn.aspx",{
+//					name:encodeURI($("#txtName").val()),
+//					sex:encodeURI($("#selSex").val())
+//				},function(data){
+//					$("#divTip").empty().html(data);
+//				})
+//				jQuery.post("getJSON.json",function(){
+//					$("#divTip").empty();//先清空标记中的内容
+//  				var strHTML = "";//初始化保存内容变量
+//////  				//遍历获取的数据
+//  				$.each(data,function(InfoIndex,Info){
+//  					console.log(InfoIndex);
+//  					console.log(Info);
+//  					strHTML += "姓名：" + Info["name"] + "<br>";
+//  					strHTML += "性别：" + Info["sex"] + "<br>";
+//  					strHTML += "邮箱：" + Info["email"] + "<hr>";
+//  				})
+//  				$("#divTip").html(strHTML);
+//				})
+    		})
+    	})
+    </script>
+</html>

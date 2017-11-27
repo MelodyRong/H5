@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				font-size:13px;
+			}                  
+			/*.divFrame{
+				width:180px;
+			}               
+			.divFrame .divMenu{
+				float: left;
+			} 
+			.divFrame .divContent{
+				float: right;
+			}         
+			.divFrame .divContent img{
+				display: none;
+			}*/
+			
+			
+			/*.btn{
+				border:#666 1px solid;
+				padding:2px;
+				width:80px;
+				margin-bottom: 5px;
+				filter:progid:DXImageTramsform.Microsoft.Gradient(GradientType=0,StartColorStr=#ffffff,EndColorStr=#ece9d8);
+			}
+			.divFrame{
+				width:86px;
+				border:solid 1px #666;
+			}
+			#divFrame .divTitle{
+				padding:5px;
+				background-color:#eee;
+			}
+			.divFrame .divContent{
+				padding:8px;
+			}
+			.divFrame .divContent img{
+				border:solid 1px #ccc;
+				padding:2px;
+			}*/
+			
+			
+			/*.divFrame{
+				border:solid 1px #ccc;
+				background-color:#eee;
+				width:60px;
+				height: 60px;
+				font-size: 13px;
+				padding:5px;
+				position: relative;
+			}
+			.divFrame p{
+				position: absolute;
+			}*/
+			
+			
+			/*.divFrame{
+				border:solid 1px #666;
+				width:168px;
+				text-align: center;
+			}
+			.divFrame .divTitle{
+				background-color:#eee;
+				padding:5px 0 5px 0;
+			}
+			.divFrame .divContent{
+				width:108px;
+				height: 52px;
+				overflow: hidden;
+				padding:5px 0 5px 0;
+				margin:0 30px 0 30px;
+			}
+			.divFrame .divContent .divList{
+				width:162px;
+				position: relative;
+			}
+			.divFrame .divContent .divList span{
+				border:solid 1px #ccc;
+				background-color: #eee;
+				width:50px;
+				height:50px;
+				float: left;
+				margin-right: 2px;
+			}
+			.btn{
+				border:#666 solid 1px;
+				padding:2px;
+				width:60px;
+			}*/
+			
+			/*#wrap{
+				width:168px;
+				border:solid 1px #ccc;
+				
+			}
+			#wrap:after{
+				content:"";
+			    visibility:hidden;
+			    display:block;
+			    clear:both;
+			}
+			#divLeft{
+				width:20px;
+				height:50px;
+				background-color: #666;
+				float: left;
+				margin-top:25px;
+			}
+			#leftyi{
+				line-height: 50px;				
+			}
+			#divContent{
+				margin:10px;
+				float: left;
+			}
+			#divList{
+				width:200px;
+				height:100px;
+				overflow: hidden;
+				padding:5px 0 5px 0;
+			}
+			#divList:after{
+				content:"";
+			    visibility:hidden;
+			    display:block;
+			    clear:both;
+			}
+			#divList span{
+				width: 50px;
+				height:100px;
+				background-color: #ccc;
+				float:left ;
+				margin-right:2px ;
+			}
+			#divRight{
+				width:20px;
+				height:50px;
+				background-color: #666;
+				float: right;
+				margin-top:25px;
+			}
+			#rightyi{
+				line-height: 50px;
+			}*/
+			
+			div{
+				border:solid 1px red;
+				background-color:#eee;
+				width:50px;
+				height:50px;
+				font-size:13px;
+				padding:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div class="divFrame">
+			<div class="divMenu">
+				<input type="button" id="Button1" value="无参数"/><br />
+				<input type="button" id="Button2" value="逻辑显示"/><br />
+				<input type="button" id="Button3" value="动画显示"/>
+			</div>
+			<div class="divContent">
+				<img src="img/FpQ9ICVTRABngrELjZ0ELrcaZ2Eq.jpg "/>
+			</div>			
+		</div>-->
+		
+		
+		<!--<div class="divFrame">
+			<div class="divTitle">隐藏图片</div>
+			<div class="divContent"><img src="img/FpQ9ICVTRABngrELjZ0ELrcaZ2Eq.jpg" alt="" /></div>
+			<div id="divTip"></div>
+		</div>-->
+		
+		<!--<div class="divFrame">
+			<p>点击变大</p>
+		</div>-->
+		
+		
+		<!--<div class="divFrame">
+			<div class="divTitle">
+				<input id="button1" type="button" value="左移" class="btn"/>&nbsp;
+				<input id="button2" type="button" value="右移" class="btn"/>
+			</div>
+			<div class="divContent">
+				<div class="divList">
+					<span>1</span>
+					<span>2</span>
+					<span>3</span>
+				</div>
+			</div>
+		</div>-->
+		
+		
+		<div id="">
+			队列
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+//			$("input:eq(0)").click(function(){//无参数方法
+//				$("img").toggle();
+//			})
+//			$("input:eq(1)").click(function(){//根据参数switch显示
+//				var intI = 0;
+//				var blnA = intI > 1;//获取逻辑值
+//				$("img").toggle(blnA);
+//			})
+//			$("input:eq(2)").click(function(){//动画方式显示
+//				$("img").toggle(3000,function(){
+//					$(this).css({"border":"solid 1px #ccc","padding":"2px"});
+//				})
+//			})
+
+//			var blnShow = false;//初始化一个布尔变量值
+//			var $Title = $((".divTitle"));//定义变量 获取标题部分
+//			var $Tip = $("#divTip");//定义变量获取提示元素
+//			$Title.click(function(){
+//				if(!blnShow){
+//					//图片高度向上减少，执行完成后，回调一个函数
+//					$("img").fadeOut(3000,function(){
+//						$Tip.html("关闭成功");
+//					})
+//					$(this).html("显示图片");//改变标题内容
+//					blnShow = true;//改变布尔变量值
+//				}else{
+//					$Tip.html("");//清空提示内容
+//					$("img").fadeIn(3000);//图片高度向下增大
+//					$(this).html("隐藏图片");
+//					blnShow = false;
+//				}
+//			})
+
+//			$(".divFrame").click(function(){//div元素点击事件
+//				$(this).animate({//高与宽变化的动画效果
+//					width:"20%",
+//					height:"70px"
+//				},3000,function(){//动画完成后执行的回调函数
+//					$(this).css({
+//						"border":"solid 3px #666"
+//					}).html("变大了！");
+//				});
+//				$("p").animate({
+//					left:"20px"
+////					top:"70px"
+//				})
+//			})
+
+//			$("input:eq(0)").click(function(){//左移按钮点击事件
+//				//在3000毫秒内，以动画的形式想做移动52像素
+//				$(".divList").animate({
+//					left:"-=52px"
+//				},3000)
+//			})
+//			$("input:eq(1)").click(function(){//右移按钮点击事件
+//				//在3000毫秒内，以动画形式向右移动52像素
+//				$(".divList").animate({
+//					left:"+=52px"
+//				},3000)
+//			})
+
+			$("div").click(function(){
+				$(this).animate({
+					height:100
+				}, "slow").animate({
+					width:100
+				},"slow").animate({
+					height:50
+				},"slow").animate({
+					width:50 
+				},"slow")
+			})
+		})
+	</script>
+</html>

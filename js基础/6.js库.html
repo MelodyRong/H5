@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js 库</title>
+	</head>
+	<body>
+		<h1 id="h01"></h1>
+		<h1 id="h02"></h1>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<!--<script src="https://apps.bdimg.com/libs/prototype/1.7.1.0/prototype.js"></script>-->
+	<script type="text/javascript">
+		/*1.js 库：jquery，prototype，mootools
+		 jquery：jQuery 是目前最受欢迎的 JavaScript 框架。
+		它使用 CSS 选择器来访问和操作网页上的 HTML 元素（DOM 对象）。
+		jQuery 同时提供 companion UI（用户界面）和插件。
+		
+		prototype：Prototype 是一种库，提供用于执行常见 web 任务的简单 API。
+		API 是应用程序编程接口（Application Programming Interface）的缩写。它是包含属性和方法的库，用于操作 HTML DOM。
+		Prototype 通过提供类和继承，实现了对 JavaScript 的增强。
+		
+		mootols：MooTools 也是一个框架，提供了可使常见的 JavaScript 编程更为简单的 API。
+		MooTools 也含有一些轻量级的效果和动画函数。
+		
+		其他框架：下面是其他一些在上面未涉及的框架：
+		YUI - Yahoo! User Interface Framework，涵盖大量函数的大型库，从简单的 JavaScript 功能到完整的 internet widget。
+		Ext JS - 可定制的 widget，用于构建富因特网应用程序（rich Internet applications）。
+		Dojo - 用于 DOM 操作、事件、widget 等的工具包。
+		script.aculo.us - 开源的 JavaScript 框架，针对可视效果和界面行为。
+		UIZE - Widget、AJAX、DOM、模板等等。
+		
+		CDN内容分发网络：使用外部引用的js
+		 * */
+		/*2.js测试jqery：实例一
+			jquery描述：主要的jquery函数是$()函数，如果您想该函数传递DOM对象，它会返回jquery对象，带有像其添加的jquery功能；		 
+		 * */
+		//实例一：测试jq
+		$(function(){
+			$("#h01").attr("style","color:red").html("Hello jQuery")
+		})
+		/*3.js测试prototype：实例二：测试需要在网页中引用它：
+		 prototype描述：Prototype 提供的函数可使 HTML DOM 编程更容易。
+		与 jQuery 类似，Prototype 也有自己的 $() 函数。
+		$() 函数接受 HTML DOM 元素的 id 值（或 DOM 元素），并会向 DOM 对象添加新的功能。
+		与 jQuery 不同，Prototype 没有用以取代 window.onload() 的 ready() 方法。相反，Prototype 会向浏览器及 HTML DOM 添加扩展。
+		 * */
+		//实例二：测试prototype：
+//		$(function(){
+//			$("#h02").writeAttribute("style","color:red").insert("Hello Prototype");
+//		})
+	</script>
+</html>
