@@ -33,6 +33,72 @@
 					background:url(img/5.jpg);
 				}
 			}
+			#div1{
+				width:20%;
+				height:20%;
+				background-color:#6699ff;
+				position: absolute;
+				top:50%;
+				left:40%;
+				right: 40%;
+				margin-top:-10%;
+				margin-bottom: -10%;
+			}
+			#container{
+				
+			}
+			#d1{
+				border:thin solid red;
+				width:900px;
+				height:100px;
+				display:table-cell;
+				vertical-align:middle;
+			
+			}
+			#d2{
+				border:thin dotted blue;
+				width:50px;
+				height:50px;
+				float:right;  
+			}
+			.center{  
+			    width: 500px;  
+			    height:300px;  
+			    line-height: 300px;  
+			    border:1px solid;  
+			}  
+			 .inner{  
+			     background-color: blue;  
+			     width: 300px;  
+			     height: 100px;  
+			     display: inline-block;  
+			     vertical-align: middle;  
+			     
+			 } 
+			/*.outerbox{  
+				float:left;   
+				position:relative;   
+				left:50%;   
+				}   
+				.innerbox{    
+				float:left;   
+				position:relative;   
+				right:50%;   
+			}  
+			#divdiv{
+				width:100px;
+				height:200px;
+				background-color:red;
+			} */
+			.outerbox{  
+			    background-color:pink; /*方便看效果 */    
+			    width:500px ;   
+			    height:300px; /*高度可以不设*/  
+			    margin: -150px 0 0 -250px; /*使用marin向左移动250px，保证元素居中*/  
+			    position:relative;   /*相对定位*/  
+			    left:50%;  
+			    top:50%;  
+			}  
 		</style>
 	</head>
 	<body>
@@ -42,6 +108,36 @@
 		
 		<!--css编写幻灯片-->
 		<div class="ani"></div>
+		<!--垂直居中一个浮动元素-->
+		<!--1.已知元素的宽高-->
+		<div id="div1"></div>
+		<div id="d1">
+			<div id="d2"></div>
+		</div>
+		<!--2，未知元素的宽高-->
+		
+		<!--垂直居中一个img-->
+		<img src="img/2.2.jpg" id="container"/>
+		<!--块级元素垂直居中对齐-->
+		<div class="center">  
+		    <div class="inner">......</div>  
+		</div>  
+		<div style="width: 200px; height: 100px;border: 1px solid;text-align:center;line-height: 100px;">    
+		    <span>块级元素垂直居中</span>     
+		</div>   
+		<div style="width: 200px; height: 100px;border: 1px solid;text-align: center;">  
+		    <div style="border: 1px solid red;margin:0 auto;height: 50px;width: 80px;margin-top:25px;"> 块级元素水平居中</div>  
+		</div> 
+		<!--浮动元素水平居中-->
+		<div class="outerbox">  
+			<div class="innerbox">我是浮动的</div>  
+		</div>  
+		<div id="#divdiv" style="width:200px;height:100px;background-color:blue;">
+			
+		</div>
+		<div class="outerbox">  
+		   <div style="width:50px;height:50px;background-color:red;margin-left:50%;margin-right:50%;">我是浮动的</div>  
+		</div>  
 	</body>
 	<script type="text/javascript" src="js/jquery3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/new_file.js"></script>
