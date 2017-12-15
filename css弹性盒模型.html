@@ -24,5 +24,102 @@
 			<div class="logo">Logo</div>
 		  	<div class="profile">Profile</div>
 		</div>
+		<ul type="square">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<input type="button" name="" id="" value="关闭窗口" onclick="oncloseFunction();" />
+		<form action="#" method="post" name="form1" onchange="fooFunction();">
+			<input type="radio" name="radioGroup"/>
+			<input type="radio" name="radioGroup"/>
+			<input type="radio" name="radioGroup"/>
+			<input type="radio" name="radioGroup"/>
+			<input type="submit" value=""/>
+		</form>
+		
 	</body>
+	<script type="text/javascript">
+//		var a  =undefined;b = NaN;
+//		var a = "123";b = NaN;
+//		var a = undefined,b = NaN;
+//		var a = NaN,b = "undefined";
+//		alert(a+b);
+//		window.status="已经选中该文本框";
+//		var a = 10,b = 20,c = 30;
+//		++a;
+//		a++;
+//		var e = ++a+(++b)+(c++)+a++;
+//		alert(e);//77
+//		var arr = new Array(1,3,5);
+//		arr[4] = "z";
+//		alert(arr);
+//		var arr2 = arr.reverse();
+//		alert(arr2);
+//		//此时arr已经被reverse倒叙排列了，所以arr等于z，undefined，5，3，1
+//		var arr3 = arr+arr2;
+//		alert(arr3);
+		function oncloseFunction(){
+			if(confirm("是否关闭窗口")){
+				window.close();
+			}
+		}
+		function fooFunction(){                                                                                                                                                                                                                 
+			var rdo = document.form1.radiogroup;
+//			for(var i=1,i<rdo.length;i++){
+//				if(rdo.checked){
+//					alert("你选择的是第" + (i+1) + "个单选框");
+//				}
+//			}
+		}
+		//哪些操作会造成内次泄漏？
+		//setTimeOut的第一个参数如果是字符串而不是函数的话会造成内存泄漏
+		//闭包，控制台日志会造成内存泄漏
+		//循环
+		//split转换成数组，join转换成字符串
+		//js兼容
+		var ev = ev||window.event;
+		document.documentElement.clientWidth||document.body.clientWidth;
+//		var target = ev.srcElement.target;
+		//闭包的概念，特点，对页面的影响
+		//闭包就是可以读取其他函数内部变量的函数
+		//jsonp原理：动态创建script标签，回调函数，ajax是页面无刷新请求数据操作
+		//字符串反转，“12345678”变成“87654321”
+		//注意：字符串是不可以直接使用resever函数进行反转的！必须先转成数组，进行反转后再转换字符串,转换时solit和join括号内都必须有引号
+		var str = "12345678";
+		console.log(str.split("").reverse().join(""));
+//		window.location.search返回的是地址栏内问号后面的参数
+		//阶乘函数
+		
+		Number.prototype.N = function(){
+			var re = 1;
+			for(var i=1;i<=this;i++){
+				re*=i;
+			}
+			return re;
+		}
+		var num = 5;
+		alert(num.N());
+		//写一个简单的闭包,闭包是能够读取其他函数内部变量的函数，在本质上，闭包就可以讲内部函数和函数外部链接起来的一座桥梁
+		function outer(){
+			var num = 1;
+			function inner(){
+				var n = 2;
+				console.log(n + num);
+			}
+			return inner;
+		}
+		outer();
+		var bool = !!2;
+		alert(bool);
+		//双向非操作可以把字符串和数字准换成布尔值；
+		//BOM对象有哪些？列举window对象：window，location，history，document，navigator
+		var e = "a,b,c,d";
+		var f = new Array();
+		f = e.replace(","," ");
+		console.log(f);
+	</script>
 </html>
