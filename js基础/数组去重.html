@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js数组去重</title>
+	</head>
+	<body>
+		<ui id="test">
+			<li>这是第一条</li>
+			<li>这是第二条</li>
+			<li>这是第三条</li>
+			<li>这是第四条</li>
+			<li>这是第五条</li>
+		</ui>
+	</body>
+	<script type="text/javascript">
+		   var arr = [1,2,3,3,4,4,5,5,6,1,9,3,25,4];
+		   function deRepeat(){
+		   	var newArr=[];//定义一个空数组
+		   	var obj= {};
+		   	var index= 0;
+		   	var l= arr.length;
+		   	for(var i = 0;i<l;i++){
+		   		if(obj[arr[i]] == undefined){
+		   			obj[arr[i]] = 1;
+		   			newArr[index++] = arr[i];
+		   		}else if(obj[arr[i]] == 1){
+		   			continue;
+		   		}
+		   		return newArr;
+		   	}
+		   }
+		   var newArr1 = deRepeat(arr);
+		   console.log(newArr1);	
+		   
+		   //点击每一列的时候alert其index值
+		   var lis = document.getElementById("test").getElementsByTagName("li");
+		   for(var j= 0;j<lis.length;j++){
+		   	lis[j].index=j;
+		   	lis[j].onclick = function(){
+		   		alert(this.index);
+		   	}
+		   }
+		   //定义一个log方法，让其替代console.log
+		   function log(){
+		   	console.log.apply(console,arguments);
+		   }
+		   log("你好！");
+		   
+		   var user = {
+		   	count:1,
+		   	getContent:function(){
+		   		return  this.count;
+		   	}
+		   }
+		   console.log(user.getContent());
+		   var func = user.getContent;
+		   console.log(func);
+		   function greet(sth){
+		   		return function(name){
+		        	console.log(sth + ' ' + name);
+		    	}
+			}
+		
+			//hi darren
+			greet('hi')('darren');
+	</script>
+</html>
